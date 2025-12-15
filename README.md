@@ -2,4 +2,4 @@
 
 ## Data Sources
 - NHS RTT Waiting DataSet (monthly)
-- - NHS Waiting List Minimum DataSet (weekly)
+- NHS Waiting List Minimum DataSet (weekly)

@@ -18,8 +18,23 @@ logging.basicConfig(
 )
 
 # --- 2. CONFIGURATION & PATHS ---
-INPUT_PATH = '/kaggle/input/nhs-free-dataset-for-analysis/'
-OUTPUT_PATH = '/kaggle/working/'
+import os
+
+# Base project folder
+BASE_DIR = os.getcwd()
+
+# Input files folder (where you placed your Excel & CSV files)
+INPUT_PATH = os.path.join(BASE_DIR)  # since files are in the project root
+
+# Output folder for CSV & DB
+OUTPUT_PATH = os.path.join(BASE_DIR, 'output')
+os.makedirs(OUTPUT_PATH, exist_ok=True)
+
+DB_PATH = os.path.join(OUTPUT_PATH, 'nhs_data.db')
+TABLEAU_CSV_PATH = os.path.join(OUTPUT_PATH, 'tableau_data.csv')
+
+
+
 DB_PATH = os.path.join(OUTPUT_PATH, 'nhs_data.db')
 TABLEAU_CSV_PATH = os.path.join(OUTPUT_PATH, 'tableau_data.csv')
 

@@ -1,7 +1,7 @@
 # Hospital Resource Analytics
 
 A comprehensive **machine learning pipeline** for hospital resource analytics.  
-This project focuses on analyzing hospital consultation data, understanding key metrics, and predicting future values of critical hospital KPIs such as `APC_Finished_Consultant` using **Random Forest Regression**.
+This project focuses on analyzing hospital consultation data, understanding key metrics, and predicting future values of critical hospital KPIs such as `APC_Finished_Consultant` using LSTM, PROPHET, SARIMA algorthm
 
 ---
 

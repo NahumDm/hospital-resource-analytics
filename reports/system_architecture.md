@@ -2,44 +2,47 @@
 
 ```mermaid
 flowchart LR
-    subgraph RawSources["Raw Hospital Data"]
+    subgraph RawSources ["Raw Hospital Data"]
         AE[AE_Activity.xlsx]
         AQ[AE_Quality_Index.xlsx]
         CS[Consultation.csv]
         ER[ER Wait Time Dataset.csv]
     end
 
-    subgraph ETL["etl_pipeline.py"]
-        EX[extract_data()]
-        TR[transform_data()]
-        LD[load_data()]
+    subgraph ETL ["etl_pipeline.py"]
+        direction TB
+        EX[extract_data]
+        TR[transform_data]
+        LD[load_data]
     end
 
-    subgraph Outputs["Analytics Outputs"]
+    subgraph Outputs ["Analytics Outputs"]
         DB[output/nhs_data.db]
         TB[output/tableau_data.csv]
-        TA[dashboards/ (Tableau)]
+        TA[dashboards/ Tableau]
     end
 
-    subgraph Training["ml_model.py"]
-        CSModel[train_cross_sectional()]
-        TSPrep[prepare_monthly_series()]
-        Prophet[try_prophet()]
-        SARIMA[try_sarima()]
-        LSTM[try_lstm()]
+    subgraph Training ["ml_model.py"]
+        direction TB
+        CSModel[train_cross_sectional]
+        TSPrep[prepare_monthly_series]
+        Prophet[try_prophet]
+        SARIMA[try_sarima]
+        LSTM[try_lstm]
     end
 
-    subgraph Models["Model Artifacts (models/)"]
-        RF[rf_cross_sectional.pkl]
-        PR[prophet_model.pkl]
-        SA[sarima_model.pkl]
-        LS[lstm_model.pkl]
+    subgraph Models ["Model Artifacts"]
+        RF[models/rf_cross_sectional.pkl]
+        PR[models/prophet_model.pkl]
+        SA[models/sarima_model.pkl]
+        LS[models/lstm_model.pkl]
     end
 
-    subgraph App["app.py Streamlit"]
+    subgraph App ["app.py Streamlit"]
+        direction TB
         Upload[User CSV Upload]
-        Clean[auto_clean_timeseries()]
-        Eval[Model evaluation & forecasting]
+        Clean[auto_clean_timeseries]
+        Eval[Model evaluation]
         UI[Interactive outputs]
     end
 

@@ -56,7 +56,7 @@ def extract_data(input_path, config):
     try:
         for filename, file_info in config.items():
             file_path = os.path.join(input_path, filename)
-            logging.info(f"Loading '{filename}'...")
+            logging.info("Loading '%s'...", filename)
             if file_info.get('is_csv', False):
                 df = pd.read_csv(file_path)
             else:
@@ -65,10 +65,10 @@ def extract_data(input_path, config):
         logging.info("[EXTRACT] phase completed successfully.")
         return dataframes
     except FileNotFoundError as e:
-        logging.error(f"File not found during EXTRACT phase: {e}")
+        logging.error("File not found during EXTRACT phase: %s", e)
         return None
     except Exception as e:
-        logging.error(f"An unexpected error occurred during EXTRACT phase: {e}")
+        logging.error("An unexpected error occurred during EXTRACT phase: %s", e)
         return None
 
 # --- 4. TRANSFORM PHASE ---
@@ -114,10 +114,10 @@ def transform_data(dataframes):
         return final_df
         
     except KeyError as e:
-        logging.error(f"A required column was not found during TRANSFORM phase: {e}")
+        logging.error("A required column was not found during TRANSFORM phase: %s", e)
         return None
     except Exception as e:
-        logging.error(f"An unexpected error occurred during TRANSFORM phase: {e}")
+        logging.error("An unexpected error occurred during TRANSFORM phase: %s", e)
         return None
 
 # --- 5. LOAD PHASE ---
@@ -133,22 +133,22 @@ def load_data(df, db_path, tableau_path):
 
     # Load to SQLite Database
     try:
-        logging.info(f"Connecting to SQLite database at '{db_path}'...")
+        logging.info("Connecting to SQLite database at '%s'...", db_path)
         conn = sqlite3.connect(db_path)
         # Use the table name 'quality_and_attendance'
         df.to_sql('quality_and_attendance', conn, if_exists='replace', index=False)
         conn.close()
         logging.info("Successfully loaded data into SQLite table 'quality_and_attendance'.")
     except Error as e:
-        logging.error(f"Database error during LOAD phase: {e}")
+        logging.error("Database error during LOAD phase: %s", e)
 
     # Load to CSV for Tableau
     try:
-        logging.info(f"Saving analysis-ready CSV to '{tableau_path}'...")
+        logging.info("Saving analysis-ready CSV to '%s'...", tableau_path)
         df.to_csv(tableau_path, index=False)
         logging.info("Successfully saved CSV for Tableau.")
     except Exception as e:
-        logging.error(f"Could not save CSV file: {e}")
+        logging.error("Could not save CSV file: %s", e)
 
 # --- 6. EXECUTE THE PIPELINE ---
 if __name__ == "__main__":

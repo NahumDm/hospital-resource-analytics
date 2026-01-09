@@ -80,7 +80,7 @@ streamlit run app.py
 The app automatically infers relevant columns, triggers the selected model, visualizes the forecast, and displays error metrics.
 
 ## Dashboard Preview
-The Tableau workbook built from [output/tableau_data.csv](output/tableau_data.csv) highlights seasonal behavior, regional comparisons, and hospital-level wait time trends.
+The Tableau workbook built from [processed/ER Wait Time Dataset.csv](processed/ER Wait Time Dataset.csv) highlights seasonal behavior, regional comparisons, and hospital-level wait time trends.
 
 <div align="center">
 	<img src="dashboards/dashboard.png" alt="Dashboard Preview" width="85%" />
